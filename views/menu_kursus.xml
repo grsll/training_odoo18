@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->
+        <menuitem id="kursus_menu_root" name="Kursus" sequence="1" web_icon="kursus,static/img/course.png"/>
+        <!-- This Menu Item Must have a parent -->
+        <menuitem id="training_menu_categ" name="Training" parent="kursus_menu_root" sequence="10"/>
+        <!-- This Menu Item Must have a parent -->
+        <menuitem id="pengaturan_menu_categ" name="Pengaturan" parent="training_menu_categ" sequence="20"/>
+
+        <!-- This Menu Item Must have a parent -->
+        <menuitem id="wilayah_menu_categ" name="Wilayah" parent="pengaturan_menu_categ" sequence="30"/>
+
+    </data>
+</odoo>
