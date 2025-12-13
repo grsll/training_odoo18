@@ -20,7 +20,7 @@ Long description of module's purpose
     # any module necessary for this one to work correctly
     'depends': ['base', 'mail'],
     
-
+    #test
     # always loaded
     'data': [
         'security/groups.xml',
