@@ -33,6 +33,7 @@ Long description of module's purpose
         'views/peserta.xml',
         'views/desa.xml',
         'views/training_session.xml',
+        'wizards/training_wizard.xml',
         
     ],
     # only loaded in demonstration mode

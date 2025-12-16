@@ -26,7 +26,6 @@ class Peserta(models.Model):
     
     @api.model
     def create(self, vals):
-        if 'no_peserta' not in vals or vals['no_peserta'] == '/':
-            vals['no_peserta'] = self.env['ir.sequence'].next_by_code('cdn.peserta') or '/'
+        vals['no_peserta'] = self.env['ir.sequence'].next_by_code('cdn.peserta')
         return super(Peserta, self).create(vals)
     

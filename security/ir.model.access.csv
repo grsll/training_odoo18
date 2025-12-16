@@ -21,3 +21,5 @@ access_manager_cdn_desa,access_manager_cdn_desa,model_cdn_desa,kursus.group_trai
 
 access_user_cdn_peserta,access_user_cdn_peserta,model_cdn_peserta,kursus.group_training_user,1,0,0,0
 access_manager_cdn_peserta,access_manager_cdn_peserta,model_cdn_peserta,kursus.group_training_manager,1,1,1,1
+
+access_manager_cdn_wizard_training,access_manager_cdn_wizard_training,model_cdn_wizard_training,kursus.group_training_manager,1,1,1,1
