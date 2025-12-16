@@ -22,3 +22,11 @@ class Peserta(models.Model):
     is_menikah = fields.Boolean(string="Sudah Menikah")
     nama_pasangan = fields.Char(string="Nama Pasangan")
     hp_pasangan = fields.Char(string="HP Pasangan")
+    no_peserta = fields.Char(string='No Peserta', readonly=True)
+    
+    @api.model
+    def create(self, vals):
+        if 'no_peserta' not in vals or vals['no_peserta'] == '/':
+            vals['no_peserta'] = self.env['ir.sequence'].next_by_code('cdn.peserta') or '/'
+        return super(Peserta, self).create(vals)
+    

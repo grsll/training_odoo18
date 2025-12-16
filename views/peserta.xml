@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <record id="seq_peserta" model="ir.sequence">
+            <field name="name">Urutan Peserta</field>
+            <field name="code">peserta</field>
+            <field name="prefix">A/%(y)s/%(month)s/</field>
+            <field name="padding">4</field>
+            <field name="number_increment">1</field>
+            <field name="implementation">standard</field>
+        </record>
         <record id="cdn_peserta_view_list" model="ir.ui.view">
             <field name="name">cdn.peserta.view.list</field>
             <field name="model">cdn.peserta</field>
@@ -23,6 +31,17 @@
                 <form string="">
                     <sheet>
                         <field name="image_1920" widget="image" class="oe_avatar" />
+                        <div class="oe_title">
+                            <h3>
+                                <label for="no_peserta" string="No Peserta"/>
+                            </h3>
+                            <h1>
+                                <field name="no_peserta"/>
+                            </h1>
+                        </div>
+                        <group name="no_peserta" string="No Peserta">
+                            <field name="no_peserta"/>
+                        </group>
                         <group name="identitas_peserta" string="Identitas Siswa">
                             <!-- Add your fields here -->
                             <group>
@@ -70,24 +89,10 @@
                 </form>
             </field>
         </record>
-        <record id="cdn_peserta_view_search" model="ir.ui.view">
-            <field name="name">cdn.peserta.view.search</field>
-            <field name="model">cdn.peserta</field>
-            <field name="arch" type="xml">
-                <search string="Jenis Kelamin">
-                    <field name="jenis_kelamin"/>
-                    <filter name="filter_laki-laki" string="Jenis Kelamin Laki-Laki" domain="[('jenis_kelamin', '=', 'laki-laki')]"/>
-                    <filter name="filter_perempuan" string="Jenis Kelamin Perempuan" domain="[('jenis_kelamin', '=', 'perempuan')]"/>
-                    <group expand="0">
-                        <filter name="group_status_menikah" string="Status Pernikahan" context="{'group_by':'is_menikah'}"/>
-                        
-                    </group>
-                </search>
-            </field>
-        </record>
+
         <!-- cdn_peserta action window -->
         <record id="cdn_peserta_action" model="ir.actions.act_window">
-            <field name="name">Peserta</field>
+            <field name="name">Semua Peserta</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">cdn.peserta</field>
             <field name="view_mode">list,form</field>
@@ -100,6 +105,59 @@
                 </p>
             </field>
         </record>
-        <menuitem id="peserta_menu_act" name="Peserta" parent="pengaturan_menu_categ" action="cdn_peserta_action" sequence="25"/>
+
+        <!-- cdn_peserta action window -->
+        <record id="cdn_peserta_action" model="ir.actions.act_window">
+            <field name="name">Semua Peserta</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cdn.peserta</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                
+                </p>
+            </field>
+        </record>
+        <!-- cdn_peserta action_laki window -->
+        <record id="cdn_peserta_action_laki" model="ir.actions.act_window">
+            <field name="name">Data Peserta Laki-Laki</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cdn.peserta</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[('jenis_kelamin','=', 'laki-laki')]</field>
+            <field name="context">{'default_jenis_kelamin':'laki-laki'}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+        <!-- cdn_peserta action_perempuan window -->
+        <record id="cdn_peserta_action_perempuan" model="ir.actions.act_window">
+            <field name="name">Data Peserta Perempuan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cdn.peserta</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[('jenis_kelamin','=','perempuan')]</field>
+            <field name="context">{'default_jenis_kelamin':'perempuan'}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="semua_peserta_menu_act" name="Semua Peserta" parent="peserta_menu_categ" action="cdn_peserta_action" sequence="10"/>
+        <menuitem id="peserta_laki_menu_act" name="Peserta Laki-laki" parent="peserta_menu_categ" action="cdn_peserta_action_laki" sequence="20"/>
+        <menuitem id="peserta_perempuan_menu_act" name="Peserta Perempuan" parent="peserta_menu_categ" action="cdn_peserta_action_perempuan" sequence="30"/>
     </data>
 </odoo>

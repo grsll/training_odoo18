@@ -7,9 +7,10 @@
         <menuitem id="training_menu_categ" name="Training" parent="kursus_menu_root" sequence="10"/>
         <!-- This Menu Item Must have a parent -->
         <menuitem id="pengaturan_menu_categ" name="Pengaturan" parent="training_menu_categ" sequence="20"/>
-
         <!-- This Menu Item Must have a parent -->
         <menuitem id="wilayah_menu_categ" name="Wilayah" parent="pengaturan_menu_categ" sequence="30"/>
+        <!-- This Menu Item Must have a parent -->
+        <menuitem id="peserta_menu_categ" name="Peserta" parent="pengaturan_menu_categ" sequence="40"/>
 
     </data>
 </odoo>
