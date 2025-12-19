@@ -14,7 +14,7 @@ class Kursus(models.Model):
     total_harga = fields.Float(string="Total Harga Sales", compute="_compute_total_harga")
     produk_kursus_id = fields.Many2one(comodel_name='product.product', string='Produk Kursus', domain=[('is_kursus_product', '=', True)])
     harga_kursus = fields.Float(string='Harga Kursus', related='produk_kursus_id.lst_price')
-    
+    pendaftar_ids = fields.One2many(comodel_name='cdn.pendaftaran', inverse_name='kursus_id', string='Pendaftar')
     
     
     

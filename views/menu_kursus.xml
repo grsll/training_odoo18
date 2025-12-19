@@ -13,6 +13,6 @@
         <!-- This Menu Item Must have a parent -->
         <menuitem id="wilayah_menu_categ" name="Wilayah" parent="pengaturan_menu_categ" sequence="40"/>
         <!-- This Menu Item Must have a parent -->
-        <menuitem id="pendaftaran_menu_categ" name="Pendaftaran" parent="pengaturan_menu_categ" sequence="50"/>
+        <menuitem id="pendaftaran_menu_categ" name="Pendaftaran" parent="kursus_menu_root" sequence="50"/>
     </data>
 </odoo>

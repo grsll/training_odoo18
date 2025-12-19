@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <record id="seq_peserta" model="ir.sequence">
-            <field name="name">Urutan Peserta</field>
-            <field name="code">cdn.peserta</field>
-            <field name="prefix">A/%(y)s/%(month)s/</field>
-            <field name="padding">4</field>
-            <field name="number_increment">1</field>
-            <field name="implementation">standard</field>
-        </record>
         <record id="cdn_peserta_view_list" model="ir.ui.view">
             <field name="name">cdn.peserta.view.list</field>
             <field name="model">cdn.peserta</field>

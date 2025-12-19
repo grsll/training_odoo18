@@ -24,6 +24,7 @@ Long description of module's purpose
     'data': [
         'security/groups.xml',
         'security/ir.model.access.csv',
+        'data/ir_sequence_data.xml',
         'views/menu_kursus.xml',
         'views/kursus.xml',
         'views/instruktur.xml',
@@ -36,6 +37,7 @@ Long description of module's purpose
         'wizards/training_wizard.xml',
         'views/product_inherit.xml',
         'views/pendaftaran.xml',
+        'views/kehadiran.xml',
         
     ],
     # only loaded in demonstration mode

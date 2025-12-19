@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <record id="seq_pendaftaran" model="ir.sequence">
-            <field name="name">Urutan Pendaftaran</field>
-            <field name="code">cdn.pendaftaran</field>
-            <field name="prefix">REG/%(y)s/%(month)s/</field>
-            <field name="padding">4</field>
-            <field name="number_increment">1</field>
-            <field name="implementation">standard</field>
-        </record>
         <record id="cdn_pendaftaran_view_list" model="ir.ui.view">
             <field name="name">cdn.pendaftaran.view.list</field>
             <field name="model">cdn.pendaftaran</field>
@@ -35,8 +27,15 @@
                         <field name="state" widget="statusbar" statusbar_visible_levels="draft,confirm"/>
                     </header>
                     <sheet>
+                        <div class="oe_title">
+                            <h3>
+                                <label for="name" string="Nomor Pendaftaran"/>
+                            </h3>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
                         <group>
-                            <field name="name" readonly="state != 'draft'"/>
                             <field name="tanggal" readonly="state != 'draft'"/>
                             <field name="pendaftar_id" readonly="state != 'draft'"/>
                             <field name="jenis_kelamin" />
