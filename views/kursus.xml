@@ -11,6 +11,8 @@
                     <field name="name"/>
                     <field name="description"/>
                     <field name="user_id"/>
+                    <field name="produk_kursus_id"/>
+                    <field name="harga_kursus"/>
                 </list>
             </field>
         </record>
@@ -25,6 +27,9 @@
                             <!-- Add your fields here -->
                             <field name="name"/>
                             <field name="user_id"/>
+                            <field name="produk_kursus_id"/>
+                            <field name="harga_kursus"/>
+                            <field name="total_harga"/>
                         </group>
                         <notebook>
                             <page name="sesi" string="Sesi Kursus">
@@ -51,6 +56,16 @@
                                 <group>
                                     <field name="description"/>
                                 </group>
+                            </page>
+                            <page name="konsumsi" string="Peralatan/Konsumsi">
+                                <field name="produk_ids">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="product_template_variant_value_ids" widget="many2many_tags"/>
+                                        <field name="standard_price"/>
+                                        <field name="lst_price"/>
+                                    </list>
+                                </field>
                             </page>
                         </notebook>
                     </sheet>

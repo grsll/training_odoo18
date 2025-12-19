@@ -156,8 +156,8 @@
             </field>
         </record>
         <!-- This Menu Item must have a parent and an action -->
-        <menuitem id="semua_peserta_menu_act" name="Semua Peserta" parent="master_menu_categ" action="cdn_peserta_action" sequence="20"/>
-        <menuitem id="peserta_laki_menu_act" name="Peserta Laki-laki" parent="master_menu_categ" action="cdn_peserta_action_laki" sequence="30"/>
-        <menuitem id="peserta_perempuan_menu_act" name="Peserta Perempuan" parent="master_menu_categ" action="cdn_peserta_action_perempuan" sequence="40"/>
+        <menuitem id="semua_peserta_menu_act" name="Semua Peserta" parent="training_menu_categ" action="cdn_peserta_action" sequence="20"/>
+        <menuitem id="peserta_laki_menu_act" name="Peserta Laki-laki" parent="training_menu_categ" action="cdn_peserta_action_laki" sequence="30"/>
+        <menuitem id="peserta_perempuan_menu_act" name="Peserta Perempuan" parent="training_menu_categ" action="cdn_peserta_action_perempuan" sequence="40"/>
     </data>
 </odoo>

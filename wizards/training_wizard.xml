@@ -8,7 +8,7 @@
                 <form string="">
                     <group>
                         <field name="session_id"/>
-                        <field name="peserta_ids" widget="many2many_tags"/>
+                        <field name="peserta_ids"/>
                     </group>
                     <footer>
                         <button name="tambah_peserta" string="Tambah Peserta" type="object" confirm="Apakah Anda yakin akan menambah Peserta pada Sesi ini ?" class="btn-primary"/>
@@ -22,11 +22,11 @@
             <field name="name">cdn.wizard.training.view.form</field>
             <field name="model">cdn.wizard.training</field>
             <field name="arch" type="xml">
-                <form string="Tambah Banyak Peserta">
+                <form string="">
                     <sheet>
                         <group>
                             <!-- Add your fields here -->
-                            <field name="session_ids"/>
+                            <field name="session_ids" widget="many2many_tags" options="{'no_create_edit' : True}"/>
                             <field name="peserta_ids"/>
                         </group>
                         <footer>
@@ -57,5 +57,6 @@
             <field name="binding_view_types">list</field>
             <field name="view_id" ref="cdn_wizard_training_view_form"/>
         </record>
+        
     </data>
 </odoo>

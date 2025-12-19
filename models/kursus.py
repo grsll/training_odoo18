@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo.exceptions import UserError
 
 
 class Kursus(models.Model):
@@ -8,9 +9,19 @@ class Kursus(models.Model):
     name = fields.Char(string="Nama Kursus")
     description = fields.Text(string="Keterangan")
     user_id = fields.Many2one("res.users", string="Penanggung Jawab")
-    session_line = fields.One2many(
-        comodel_name="cdn.training.session", inverse_name="course_id", string="Sessions"
-    )
+    session_line = fields.One2many(comodel_name="cdn.training.session", inverse_name="course_id", string="Sessions")
+    produk_ids = fields.Many2many(comodel_name='product.product', string='Produk Konsumsi')
+    total_harga = fields.Float(string="Total Harga Sales", compute="_compute_total_harga")
+    produk_kursus_id = fields.Many2one(comodel_name='product.product', string='Produk Kursus', domain=[('is_kursus_product', '=', True)])
+    harga_kursus = fields.Float(string='Harga Kursus', related='produk_kursus_id.lst_price')
+    
+    
+    
+    
+    @api.depends('produk_ids')
+    def _compute_total_harga(self):
+        for record in self:
+            record.total_harga = sum(product.lst_price for product in record.produk_ids)
 
 
 class TrainingSession(models.Model):
@@ -58,12 +69,19 @@ class TrainingSession(models.Model):
 
     def action_confirm(self):
         for record in self:
-            record.state = "confirm"
+            if not record.instruktur_id:
+                raise UserError("Instruktur harus diisi sebelum menghitung jumlah peserta.")
+            record.state = "confirm" if record.state == "draft" else record.state
 
     def action_done(self):
         for record in self:
-            record.state = "done"
+            record.state = "done" if record.state == "confirm" else record.state
 
     def action_reset(self):
         for record in self:
-            record.state = "draft"
+            record.state = "draft" 
+            
+            
+
+            
+    

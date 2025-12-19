@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 
 class WizardTraining(models.TransientModel):
@@ -10,13 +11,17 @@ class WizardTraining(models.TransientModel):
 
     session_id = fields.Many2one(comodel_name="cdn.training.session", string="Sesi Training", default=_default_sesi)
     peserta_ids = fields.Many2many(comodel_name="cdn.peserta", string="Peserta Training")
+    session_ids = fields.Many2many(comodel_name='cdn.training.session', string='Multi Sesi Training', default=_default_sesi)
 
     def tambah_peserta(self):
+        if self.session_id.state == 'done':
+            raise ValidationError("Tidak dapat menambah peserta karena sesi training sudah selesai.")
         self.session_id.peserta_ids |= self.peserta_ids
         
-    session_ids = fields.Many2many(comodel_name='cdn.training.session', string='Multi Sesi Training', default=_default_sesi)
-    
     def tambah_banyak_peserta(self):
         for session in self.session_ids:
-            session.peserta_ids |= self.peserta_ids
+            if session.state != 'done':
+                session.peserta_ids |= self.peserta_ids
+                
+    
 

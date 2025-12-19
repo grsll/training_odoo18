@@ -18,7 +18,7 @@ Long description of module's purpose
     'version': '18.0.0.0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'mail'],
+    'depends': ['base', 'mail', 'product'],
 
     # always loaded
     'data': [
@@ -34,6 +34,8 @@ Long description of module's purpose
         'views/desa.xml',
         'views/training_session.xml',
         'wizards/training_wizard.xml',
+        'views/product_inherit.xml',
+        'views/pendaftaran.xml',
         
     ],
     # only loaded in demonstration mode
