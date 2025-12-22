@@ -20,6 +20,7 @@ class Pendaftaran(models.Model):
         default='draft',
     )
     
+    
     @api.model
     def create(self, vals):
         vals['name'] = self.env['ir.sequence'].next_by_code('cdn.pendaftaran')

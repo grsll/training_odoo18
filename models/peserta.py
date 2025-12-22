@@ -28,4 +28,5 @@ class Peserta(models.Model):
     def create(self, vals):
         vals['no_peserta'] = self.env['ir.sequence'].next_by_code('cdn.peserta')
         return super(Peserta, self).create(vals)
+        
     
