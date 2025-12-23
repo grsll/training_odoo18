@@ -19,19 +19,26 @@
             <field name="model">cdn.kehadiran</field>
             <field name="arch" type="xml">
                 <form>
+                <header>
+                        <button name="action_confirm" string="Confirm" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                        <button name="action_reset" string="Reset" type="object" class="oe_link"/>
+                        <button name="action_done" string="Done" type="object" class="oe_highlight" invisible="state != 'confirm'"/>
+                        <field name="state" widget="statusbar" statusbar_visible_levels="draft,confirm,done"/>
+                    </header>
                     <sheet>
                         <group>
                             <group>
                                 <field name="tanggal"/>
                                 <field name="kursus_id"/>
                                 <field name="session_id"/>
+                                <field name="total_hadir"/>
                             </group>
                         </group>
                         <notebook>
                             <page string="Kehadiran Peserta">
-                                <field name="kehadiran_line_ids">
-                                    <list editable="bottom" create="0">
-                                        <field name="peserta_id" readonly="1" force_save="1"/>
+                                <field name="kehadiran_line_ids" readonly="state != 'draft'">
+                                    <list editable="bottom" create="0" >
+                                        <field name="peserta_id" readonly="1" force_save="1" />
                                         <field name="jenis_kelamin" readonly="1" force_save="1"/>
                                         <field name="no_hp" readonly="1" force_save="1"/>
                                         <field name="status"/>
