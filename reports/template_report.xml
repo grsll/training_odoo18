@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Template Pendaftaran -->
+        <template id="report_pendaftaran_document">
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context(lang=doc.create_uid.lang)"/>
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <h2 class="text-center">Bukti Pendaftaran Kursus</h2>
+                    <br/>
+                    <div class="row">
+                        <div class="col-6">
+                            <strong>Nomor Pendaftaran:</strong> <span t-field="doc.name"/><br/>
+                            <strong>Tanggal:</strong> <span t-field="doc.tanggal"/><br/>
+                        </div>
+                        <div class="col-6">
+                            <strong>Peserta:</strong> <span t-field="doc.pendaftar_id.name"/><br/>
+                            <strong>No HP:</strong> <span t-field="doc.no_hp"/><br/>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-12">
+                            <strong>Kursus yang Diikuti:</strong> <span t-field="doc.kursus_id.name"/><br/>
+                            <strong>Harga:</strong> <span t-field="doc.harga_kursus" t-options='{"widget": "monetary", "display_currency": doc.env.company.currency_id}'/><br/>
+                            <strong>Status:</strong> <span t-field="doc.state"/><br/>
+                        </div>
+                    </div>
+                    <div class="oe_structure"/>
+                </div>
+            </t>
+        </template>
+
+        <template id="report_pendaftaran">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="kursus.report_pendaftaran_document"/>
+                </t>
+            </t>
+        </template>
+
+        <!-- Template Peserta -->
+        <template id="report_peserta_document">
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context(lang=doc.create_uid.lang)"/>
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <h2 class="text-center">Kartu Peserta</h2>
+                    <br/>
+                    <div class="row">
+                        <div class="col-6">
+                            <strong>No Peserta:</strong> <span t-field="doc.no_peserta"/><br/>
+                            <strong>Nama:</strong> <span t-field="doc.name"/><br/>
+                            <strong>Jenis Kelamin:</strong> <span t-field="doc.jenis_kelamin"/><br/>
+                            <strong>Email:</strong> <span t-field="doc.email"/><br/>
+                            <strong>No HP:</strong> <span t-field="doc.mobile"/><br/>
+                        </div>
+                        <div class="col-6">
+                            <strong>Tempat, Tanggal Lahir:</strong> <span t-field="doc.tempat_lahir"/>, <span t-field="doc.tanggal_lahir"/><br/>
+                            <strong>Pendidikan:</strong> <span t-field="doc.jenjang_pendidikan"/><br/>
+                            <strong>Pekerjaan:</strong> <span t-field="doc.pekerjaan"/><br/>
+                        </div>
+                    </div>
+                    <div class="oe_structure"/>
+                </div>
+            </t>
+        </template>
+
+        <template id="report_peserta">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="kursus.report_peserta_document"/>
+                </t>
+            </t>
+        </template>
+
+        <!-- Template Kehadiran -->
+        <template id="report_kehadiran_document">
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context(lang=doc.create_uid.lang)"/>
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <h2 class="text-center">Laporan Kehadiran</h2>
+                    <br/>
+                    <div class="row">
+                        <div class="col-6">
+                            <strong>Tanggal:</strong> <span t-field="doc.tanggal"/><br/>
+                            <strong>Kursus:</strong> <span t-field="doc.kursus_id.name"/><br/>
+                            <strong>Sesi:</strong> <span t-field="doc.session_id.name"/><br/>
+                        </div>
+                        <div class="col-6 text-right">
+                            <strong>Status:</strong> <span t-field="doc.state"/><br/>
+                            <strong>Total Hadir:</strong> <span t-field="doc.total_hadir"/><br/>
+                        </div>
+                    </div>
+                    <br/>
+                    <table class="table table-sm table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nama Peserta</th>
+                                <th>Jenis Kelamin</th>
+                                <th>No HP</th>
+                                <th>Status Kehadiran</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="doc.kehadiran_line_ids" t-as="line">
+                            <tr>
+                                <td><span t-field="line.peserta_id.name"/></td>
+                                <td><span t-field="line.jenis_kelamin"/></td>
+                                <td><span t-field="line.no_hp"/></td>
+                                <td><span t-field="line.status"/></td>
+                            </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <div class="oe_structure"/>
+                </div>
+            </t>
+        </template>
+
+        <template id="report_kehadiran">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="kursus.report_kehadiran_document"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

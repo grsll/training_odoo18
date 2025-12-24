@@ -32,6 +32,7 @@
                                 <field name="kursus_id"/>
                                 <field name="session_id"/>
                                 <field name="total_hadir"/>
+                                <field name="nama_instruktur"/>
                             </group>
                         </group>
                         <notebook>

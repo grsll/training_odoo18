@@ -30,6 +30,8 @@ class Kehadiran(models.Model):
     kehadiran_line_ids = fields.One2many("cdn.kehadiran.line", "kehadiran_id", string="Daftar Kehadiran")
     state = fields.Selection(string="Status Kehadiran", selection=[("draft", "Draft"), ("confirm", "Confirm"), ("done", "Done")], default="draft",)
     total_hadir = fields.Integer(string="Total Hadir", compute="_compute_total_hadir", store=True)
+    nama_instruktur = fields.Many2one(string='Nama Instruktur', related="session_id.instruktur_id")
+    
     
 
     @api.depends("kehadiran_line_ids.status")

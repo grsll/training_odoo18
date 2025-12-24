@@ -8,7 +8,7 @@ class Kursus(models.Model):
 
     name = fields.Char(string="Nama Kursus")
     description = fields.Text(string="Keterangan")
-    user_id = fields.Many2one("res.users", string="Penanggung Jawab")
+    user_id = fields.Many2one(comodel_name="cdn.instruktur", string="Penanggung Jawab")
     session_line = fields.One2many(comodel_name="cdn.training.session", inverse_name="course_id", string="Sessions")
     produk_ids = fields.Many2many(comodel_name='product.product', string='Produk Konsumsi')
     total_harga = fields.Float(string="Total Harga Sales", compute="_compute_total_harga")

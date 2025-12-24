@@ -13,6 +13,7 @@
                     <field name="no_hp"/>
                     <field name="kursus_id"/>
                     <field name="harga_kursus"/>
+                    <field name="status_pembayaran"/>
                 </list>
             </field>
         </record>
@@ -24,6 +25,7 @@
                     <header>
                         <button name="action_set_draft" string="Draf" type="object" class="oe_highlight" invisible="state != 'confirm'"/>
                         <button name="action_confirm" string="Confirm" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                        <button name="action_create_invoice" string="Buat Tagihan" type="object" class="oe_link" invisible="state != 'confirm' or invoice_id"/>
                         <field name="state" widget="statusbar" statusbar_visible_levels="draft,confirm"/>
                     </header>
                     <sheet>
@@ -42,7 +44,9 @@
                             <field name="no_hp"/>
                             <field name="kursus_id"/>
                             <field name="harga_kursus"/>
+                            <field name="status_pembayaran"/>
                         </group>
+                        <field name="invoice_id" invisible="1"/>
                     </sheet>
                 </form>
             </field>

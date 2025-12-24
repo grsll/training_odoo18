@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Report Pendaftaran -->
+        <record id="action_report_pendaftaran" model="ir.actions.report">
+            <field name="name">Bukti Pendaftaran</field>
+            <field name="model">cdn.pendaftaran</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">kursus.report_pendaftaran</field>
+            <field name="report_file">kursus.report_pendaftaran</field>
+            <field name="print_report_name">'Bukti Pendaftaran - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="model_cdn_pendaftaran"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <!-- Report Peserta -->
+        <record id="action_report_peserta" model="ir.actions.report">
+            <field name="name">Kartu Peserta</field>
+            <field name="model">cdn.peserta</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">kursus.report_peserta</field>
+            <field name="report_file">kursus.report_peserta</field>
+            <field name="print_report_name">'Kartu Peserta - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="model_cdn_peserta"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <!-- Report Kehadiran -->
+        <record id="action_report_kehadiran" model="ir.actions.report">
+            <field name="name">Laporan Kehadiran</field>
+            <field name="model">cdn.kehadiran</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">kursus.report_kehadiran</field>
+            <field name="report_file">kursus.report_kehadiran</field>
+            <field name="print_report_name">'Laporan Kehadiran - %s' % (object.tanggal)</field>
+            <field name="binding_model_id" ref="model_cdn_kehadiran"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>
