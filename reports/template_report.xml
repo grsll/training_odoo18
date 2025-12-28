@@ -3,33 +3,63 @@
     <data>
         <!-- Template Pendaftaran -->
         <template id="report_pendaftaran_document">
-            <t t-call="web.external_layout">
+            <t t-call="web.basic_layout">
                 <t t-set="doc" t-value="doc.with_context(lang=doc.create_uid.lang)"/>
                 <div class="page">
-                    <div class="oe_structure"/>
-                    <h2 class="text-center">Bukti Pendaftaran Kursus</h2>
-                    <br/>
-                    <div class="row">
-                        <div class="col-6">
-                            <strong>Nomor Pendaftaran:</strong> <span t-field="doc.name"/><br/>
-                            <strong>Tanggal:</strong> <span t-field="doc.tanggal"/><br/>
-                        </div>
-                        <div class="col-6">
-                            <strong>Peserta:</strong> <span t-field="doc.pendaftar_id.name"/><br/>
-                            <strong>No HP:</strong> <span t-field="doc.no_hp"/><br/>
-                        </div>
+                    <div style="min-height: 50%; border-bottom: 2px dashed #000; padding-bottom: 20px; margin-bottom: 20px;">
+                        <t t-call="kursus.report_pendaftaran_content"/>
                     </div>
-                    <br/>
-                    <div class="row">
-                        <div class="col-12">
-                            <strong>Kursus yang Diikuti:</strong> <span t-field="doc.kursus_id.name"/><br/>
-                            <strong>Harga:</strong> <span t-field="doc.harga_kursus" t-options='{"widget": "monetary", "display_currency": doc.env.company.currency_id}'/><br/>
-                            <strong>Status:</strong> <span t-field="doc.state"/><br/>
-                        </div>
+                    <div style="min-height: 50%;">
+                        <t t-call="kursus.report_pendaftaran_content"/>
                     </div>
-                    <div class="oe_structure"/>
                 </div>
             </t>
+        </template>
+
+        <template id="report_pendaftaran_content">
+            <div class="oe_structure"/>
+            <div class="row">
+                <div class="col-3 mb4">
+                    <img t-if="doc.env.company.logo" t-att-src="image_data_uri(doc.env.company.logo)" style="max-height: 45px;" alt="Logo"/>
+                </div>
+                <div class="col-9 text-end" style="margin-top:22px;" t-field="doc.env.company.report_header" name="moto"/>
+            </div>
+            <div t-if="doc.env.company.logo or doc.env.company.report_header" class="row zero_min_height">
+                <div class="col-12">
+                    <div style="border-bottom: 1px solid black;"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6" name="company_address">
+                    <span t-field="doc.env.company.name" style="font-weight: bold;"/><br/>
+                    <span t-field="doc.env.company.street"/><br/>
+                    <span t-if="doc.env.company.street2" t-field="doc.env.company.street2"/><br/>
+                    <span t-field="doc.env.company.city"/> <span t-field="doc.env.company.zip"/><br/>
+                </div>
+            </div>
+            <br/>
+            
+            <h2 class="text-center">Bukti Pendaftaran Kursus</h2>
+            <br/>
+            <div class="row">
+                <div class="col-6">
+                    <strong>Nomor Pendaftaran:</strong> <span t-field="doc.name"/><br/>
+                    <strong>Tanggal:</strong> <span t-field="doc.tanggal"/><br/>
+                </div>
+                <div class="col-6">
+                    <strong>Peserta:</strong> <span t-field="doc.pendaftar_id.name"/><br/>
+                    <strong>No HP:</strong> <span t-field="doc.no_hp"/><br/>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-12">
+                    <strong>Kursus yang Diikuti:</strong> <span t-field="doc.kursus_id.name"/><br/>
+                    <strong>Harga:</strong> <span t-field="doc.harga_kursus" t-options='{"widget": "monetary", "display_currency": doc.env.company.currency_id}'/><br/>
+                    <strong>Status:</strong> <span t-field="doc.state"/><br/>
+                </div>
+            </div>
+            <div class="oe_structure"/>
         </template>
 
         <template id="report_pendaftaran">
@@ -42,27 +72,54 @@
 
         <!-- Template Peserta -->
         <template id="report_peserta_document">
-            <t t-call="web.external_layout">
-                <t t-set="doc" t-value="doc.with_context(lang=doc.create_uid.lang)"/>
-                <div class="page">
-                    <div class="oe_structure"/>
-                    <h2 class="text-center">Kartu Peserta</h2>
-                    <br/>
-                    <div class="row">
-                        <div class="col-6">
-                            <strong>No Peserta:</strong> <span t-field="doc.no_peserta"/><br/>
-                            <strong>Nama:</strong> <span t-field="doc.name"/><br/>
-                            <strong>Jenis Kelamin:</strong> <span t-field="doc.jenis_kelamin"/><br/>
-                            <strong>Email:</strong> <span t-field="doc.email"/><br/>
-                            <strong>No HP:</strong> <span t-field="doc.mobile"/><br/>
+            <t t-call="web.basic_layout">
+                <div class="page" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding: 10px; color: #333;">
+                    <div class="row" style="border-bottom: 2px solid #e0e0e0; padding-bottom: 5px; margin-bottom: 10px;">
+                        <div class="col-8">
+                            <h4 style="margin: 0; font-weight: bold; color: #2C3E50; text-transform: uppercase; font-size: 14px;">KARTU PESERTA</h4>
+                            <span t-field="doc.no_peserta" style="color: #7f8c8d; font-size: 11px;"/>
                         </div>
-                        <div class="col-6">
-                            <strong>Tempat, Tanggal Lahir:</strong> <span t-field="doc.tempat_lahir"/>, <span t-field="doc.tanggal_lahir"/><br/>
-                            <strong>Pendidikan:</strong> <span t-field="doc.jenjang_pendidikan"/><br/>
-                            <strong>Pekerjaan:</strong> <span t-field="doc.pekerjaan"/><br/>
+                        <div class="col-4 text-end">
+                            <img t-if="doc.env.company.logo" t-att-src="image_data_uri(doc.env.company.logo)" style="max-height: 25px;" alt="Logo"/>
                         </div>
                     </div>
-                    <div class="oe_structure"/>
+                    <div class="row">
+                        <div class="col-8" style="font-size: 10px; line-height: 1.6;">
+                            <div class="row">
+                                <div class="col-4" style="font-weight: bold;">Nama</div>
+                                <div class="col-8">: <span t-field="doc.name"/></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4" style="font-weight: bold;">Alamat</div>
+                                <div class="col-8">
+                                    : <span t-if="doc.street" t-field="doc.street"/><span t-if="doc.street and doc.city">, </span>
+                                    <span t-if="doc.city" t-field="doc.city" style="text-transform: uppercase;"/><span t-if="doc.city and doc.state_id">, </span>
+                                    <span t-if="doc.state_id" t-field="doc.state_id.name" style="text-transform: uppercase;"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4" style="font-weight: bold;">No. HP</div>
+                                <div class="col-8">: <span t-field="doc.mobile"/></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4" style="font-weight: bold;">Jenis Kelamin</div>
+                                <div class="col-8">: <span t-field="doc.jenis_kelamin"/></div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <t t-if="doc.image_1920">
+                                <img t-att-src="image_data_uri(doc.image_1920)" style="max-height: 100px; width: auto; border-radius: 2px;" alt="Foto Peserta"/>
+                            </t>
+                            <t t-else="">
+                                <div style="width: 100%; height: 100px; background-color: #ecf0f1; display: flex; align-items: center; justify-content: center; border: 1px solid #bdc3c7;">
+                                    <span style="font-size: 8px; color: #7f8c8d;">FOTO</span>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                    <div class="text-center" style="margin-top: 15px; font-size: 8px; color: #7f8c8d;">
+                        Kartu ini adalah bukti keanggotaan peserta kursus.
+                    </div>
                 </div>
             </t>
         </template>
