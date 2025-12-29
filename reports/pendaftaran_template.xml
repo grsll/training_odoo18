@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <template id="report_pendaftaran_document">
+            <t t-call="web.basic_layout">
+                <t t-set="doc" t-value="doc.with_context(lang=doc.create_uid.lang)"/>
+                <div class="page">
+                    <div style="min-height: 50%; border-bottom: 2px dashed #000; padding-bottom: 20px; margin-bottom: 20px;">
+                        <t t-call="kursus.report_pendaftaran_content"/>
+                    </div>
+                    <div style="min-height: 50%;">
+                        <t t-call="kursus.report_pendaftaran_content"/>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <template id="report_pendaftaran_content">
+            <div class="oe_structure"/>
+            <div class="row">
+                <div class="col-3 mb4">
+                    <img t-if="doc.env.company.logo" t-att-src="image_data_uri(doc.env.company.logo)" style="max-height: 45px;" alt="Logo"/>
+                </div>
+                <div class="col-9 text-end" style="margin-top:22px;" t-field="doc.env.company.report_header" name="moto"/>
+            </div>
+            <div t-if="doc.env.company.logo or doc.env.company.report_header" class="row zero_min_height">
+                <div class="col-12">
+                    <div style="border-bottom: 1px solid black;"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6" name="company_address">
+                    <span t-field="doc.env.company.name" style="font-weight: bold;"/><br/>
+                    <span t-field="doc.env.company.street"/><br/>
+                    <span t-if="doc.env.company.street2" t-field="doc.env.company.street2"/><br/>
+                    <span t-field="doc.env.company.city"/> <span t-field="doc.env.company.zip"/><br/>
+                </div>
+            </div>
+            <br/>
+            
+            <h2 class="text-center">Bukti Pendaftaran Kursus</h2>
+            <br/>
+            <div class="row">
+                <div class="col-6">
+                    <strong>Nomor Pendaftaran:</strong> <span t-field="doc.name"/><br/>
+                    <strong>Tanggal:</strong> <span t-field="doc.tanggal"/><br/>
+                </div>
+                <div class="col-6">
+                    <strong>Peserta:</strong> <span t-field="doc.pendaftar_id.name"/><br/>
+                    <strong>No HP:</strong> <span t-field="doc.no_hp"/><br/>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-12">
+                    <strong>Kursus yang Diikuti:</strong> <span t-field="doc.kursus_id.name"/><br/>
+                    <strong>Harga:</strong> <span t-field="doc.harga_kursus" t-options='{"widget": "monetary", "display_currency": doc.env.company.currency_id}'/><br/>
+                    <strong>Status:</strong> <span t-field="doc.state"/><br/>
+                </div>
+            </div>
+            <div class="oe_structure"/>
+        </template>
+
+        <template id="report_pendaftaran">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="kursus.report_pendaftaran_document"/>
+                </t>
+            </t>
+        </template>
+    
+        
+    
+    </data>
+    
+
+</odoo>

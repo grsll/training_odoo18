@@ -28,13 +28,14 @@ Long description of module's purpose
         "views/peserta.xml",
         "views/desa.xml",
         "views/training_session.xml",
-        "wizards/training_wizard.xml",
         "views/product_inherit.xml",
         "views/pendaftaran.xml",
         "views/kehadiran.xml",
         "reports/action_report.xml",
-        "reports/template_report.xml",
-        "reports/template_report.xml",
+        "reports/peserta_template.xml",
+        "reports/kehadiran_template.xml",
+        "reports/pendaftaran_template.xml",
+        "wizards/training_wizard.xml",
     ],
     # only loaded in demonstration mode
     "demo": [

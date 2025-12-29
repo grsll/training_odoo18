@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <template id="report_peserta_document">
+            <t t-call="web.basic_layout">
+                <div class="page" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding: 10px; color: #333;">
+                    <div class="row" style="border-bottom: 2px solid #e0e0e0; padding-bottom: 5px; margin-bottom: 10px;">
+                        <div class="col-8">
+                            <h4 style="margin: 0; font-weight: bold; color: #2C3E50; text-transform: uppercase; font-size: 14px;">KARTU PESERTA</h4>
+                            <span t-field="doc.no_peserta" style="color: #7f8c8d; font-size: 11px;"/>
+                        </div>
+                        <div class="col-4 text-end">
+                            <img t-if="doc.env.company.logo" t-att-src="image_data_uri(doc.env.company.logo)" style="max-height: 25px;" alt="Logo"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8" style="font-size: 10px; line-height: 1.6;">
+                            <div class="row">
+                                <div class="col-4" style="font-weight: bold;">Nama</div>
+                                <div class="col-8">: <span t-field="doc.name"/></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4" style="font-weight: bold;">Alamat</div>
+                                <div class="col-8">
+                                    : <span t-if="doc.street" t-field="doc.street"/><span t-if="doc.street and doc.city">, </span>
+                                    <span t-if="doc.city" t-field="doc.city" style="text-transform: uppercase;"/><span t-if="doc.city and doc.state_id">, </span>
+                                    <span t-if="doc.state_id" t-field="doc.state_id.name" style="text-transform: uppercase;"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4" style="font-weight: bold;">No. HP</div>
+                                <div class="col-8">: <span t-field="doc.mobile"/></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4" style="font-weight: bold;">Jenis Kelamin</div>
+                                <div class="col-8">: <span t-field="doc.jenis_kelamin"/></div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <t t-if="doc.image_1920">
+                                <img t-att-src="image_data_uri(doc.image_1920)" style="max-height: 100px; width: auto; border-radius: 2px;" alt="Foto Peserta"/>
+                            </t>
+                            <t t-else="">
+                                <div style="width: 100%; height: 100px; background-color: #ecf0f1; display: flex; align-items: center; justify-content: center; border-radius: 2px;">
+                                    <span style="font-size: 8px; color: #7f8c8d;">FOTO</span>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                    <div class="text-center" style="margin-top: 15px; font-size: 8px; color: #7f8c8d;">
+                        Kartu ini adalah bukti keanggotaan peserta kursus.
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <template id="report_peserta">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="kursus.report_peserta_document"/>
+                </t>
+            </t>
+        </template>
+    
+        
+    
+    </data>
+    
+
+</odoo>
